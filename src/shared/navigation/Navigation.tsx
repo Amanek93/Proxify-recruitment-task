@@ -1,10 +1,13 @@
 import Animated from 'react-native-reanimated';
 import React, {useState} from 'react';
-import {StyleSheet, View, TouchableOpacity, Text} from 'react-native';
+import {StyleSheet, View, TouchableOpacity} from 'react-native';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import {createStackNavigator} from '@react-navigation/stack';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
+import Icon from 'react-native-vector-icons/Ionicons';
+
 import {GLOBAL_COLORS} from '../../ui/const/colors';
+import {GLOBAL_ICONS} from '../../ui/const/icons';
 
 import CartView from '../../containers/cart-view';
 import StartView from '../../containers/start-view';
@@ -26,14 +29,23 @@ const StackNavigator = (props: any) => {
         <Stack.Navigator
           headerMode="screen"
           screenOptions={(props) => {
-            const {toggleDrawer} = props.navigation; // <-- drawer's navigation (not from stack)
+            const {toggleDrawer} = props.navigation;
             return {
               headerLeft: () => (
-                <TouchableOpacity onPress={toggleDrawer}>
-                  <Text>ICON</Text>
+                <TouchableOpacity
+                  onPress={() => toggleDrawer()}
+                  style={styles.menuIcon}>
+                  <Icon
+                    color={GLOBAL_COLORS.menuIcon}
+                    name={GLOBAL_ICONS.menu}
+                    size={40}
+                  />
                 </TouchableOpacity>
               ),
-              headerStyle: {shadowColor: 'transparent'},
+              headerStyle: {
+                shadowColor: 'transparent',
+              },
+              headerTitleAlign: 'left',
               headerTintColor: GLOBAL_COLORS.header,
               headerTitleStyle: {
                 fontSize: 24,
@@ -50,7 +62,7 @@ const StackNavigator = (props: any) => {
           />
           <Stack.Screen
             component={(props) => <CartView {...props} />}
-            name="Your Cart"
+            name="YourCart"
           />
         </Stack.Navigator>
       </Animated.View>
@@ -90,10 +102,17 @@ const Navigation = () => {
           activeTintColor: GLOBAL_COLORS.active,
           inactiveTintColor: GLOBAL_COLORS.white,
           inactiveBackgroundColor: 'transparent',
+          style: {
+            marginVertical: 50,
+          },
+          itemStyle: {
+            borderRadius: 15.5,
+          },
           labelStyle: {
             fontSize: 20,
             lineHeight: 27,
-            marginLeft: 0,
+            marginLeft: 20,
+            width: '100%',
             fontFamily: 'Avenir-Roman',
           },
         }}
@@ -164,6 +183,10 @@ const styles = StyleSheet.create({
   mainContainer: {
     backgroundColor: GLOBAL_COLORS.white,
     flex: 1,
+  },
+  menuIcon: {
+    marginLeft: 20,
+    width: 200,
   },
   overlay: {
     backgroundColor: GLOBAL_COLORS.background,

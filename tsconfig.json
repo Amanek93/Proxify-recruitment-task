@@ -55,7 +55,7 @@
     "resolveJsonModule": true
   },
   "files": [
-    "./src/app/App.tsx"
+    "./src/App.js"
   ],
   "include": [
     "**/*.d.ts"

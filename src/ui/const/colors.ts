@@ -5,4 +5,6 @@ export const GLOBAL_COLORS = {
   header: '#9F9FA0',
   active: '#FC8074',
   activeOpacity: 'rgba(252, 128, 116, 0.2)',
+  divider: '#84818E',
+  menuIcon: '#E8E5E5',
 };
